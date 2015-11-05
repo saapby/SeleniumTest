@@ -1,3 +1,4 @@
+import com.sun.xml.internal.bind.v2.TODO;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -259,7 +260,7 @@ public class InternetTest {
         Assert.assertEquals(driver.getCurrentUrl(), "https://the-internet.herokuapp.com/windows");
     }
 
-    ////dsdsd
+    //TODO: INVESTIGATION_ALLERTS
     @Test
     public void jsPromptTestTest() {
 
@@ -277,7 +278,13 @@ public class InternetTest {
 
         button.click();
         driver.switchTo().alert();
-        (new Actions(driver)).sendKeys(Keys.TAB).sendKeys(Keys.SPACE).perform();
+        (new Actions(driver))
+                .sendKeys()
+                .sendKeys(Keys.SPACE)
+                .perform();
+
+        alert.accept();
+
         Assert.assertFalse(Helper.isAlertPresent(driver), "Alert is present");
         Assert.assertEquals(driver.findElement(By.id("result")).getText(), "You entered: " + TEXT_ENTER);
     }

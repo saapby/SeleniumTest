@@ -21,9 +21,9 @@ public class SimpleTest {
     public void setup() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
-//        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
-//        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
-//        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().pageLoadTimeout(60, TimeUnit.SECONDS);
+        driver.manage().timeouts().setScriptTimeout(60, TimeUnit.SECONDS);
     }
 
     @AfterMethod
@@ -47,6 +47,7 @@ public class SimpleTest {
         Assert.assertEquals("Барахолка onliner.by - Главная страница", driver.getTitle());
     }
 
+    //TODO: REFRESH_TEST_HW
     @Test (expectedExceptions = StaleElementReferenceException.class)
     public void refreshTest() throws InterruptedException {
 
@@ -62,22 +63,26 @@ public class SimpleTest {
         element.click();
     }
 
+    //TODO: BACK_TEST_HW
     @Test
     public void backTest() throws InterruptedException {
+
         //arrange
         driver.get("http://www.onliner.by/");
-        Thread.sleep(10000);
+        Thread.sleep(3000);
         WebElement element = driver.findElement(By.xpath(".//*[@id='container']/div/div[2]/header/nav/ul[2]/li[6]/a"));
 
         //act
         element.click();
         Assert.assertEquals("http://baraholka.onliner.by/", driver.getCurrentUrl());
+        Thread.sleep(3000);
         driver.navigate().back();
 
         //assert
         Assert.assertEquals("http://www.onliner.by/", driver.getCurrentUrl());
     }
 
+    //TODO: FORWARD_TEST_HW
     @Test
     public void forwardTest() {
 
@@ -98,6 +103,4 @@ public class SimpleTest {
         Assert.assertEquals("http://baraholka.onliner.by/", driver.getCurrentUrl());
 
     }
-
-
 }
